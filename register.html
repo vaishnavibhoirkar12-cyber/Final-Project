@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - ProjectHub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function toggleFields() {
+            var role = document.getElementById("roleSelect").value;
+            var studentFields = document.getElementById("studentFields");
+            var facultyFields = document.getElementById("facultyFields");
+            
+            if (role === "student") {
+                studentFields.style.display = "block";
+                facultyFields.style.display = "none";
+            } else if (role === "faculty") {
+                studentFields.style.display = "none";
+                facultyFields.style.display = "block";
+            } else {
+                studentFields.style.display = "none";
+                facultyFields.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body onload="toggleFields()">
+    <nav class="navbar">
+        <a href="/" class="navbar-brand">ProjectHub</a>
+        <div class="navbar-nav">
+            <a href="{{ url_for('login') }}" class="nav-link">Login</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card center-card" style="max-width: 500px;">
+            <h2 style="margin-bottom: 2rem; text-align: center;">Create Account</h2>
+
+            <form method="POST" action="{{ url_for('register') }}">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="John Doe" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" name="email" class="form-control" placeholder="john@university.edu" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Register As</label>
+                    <select name="role" id="roleSelect" class="form-control" onchange="toggleFields()" required>
+                        <option value="student" selected>Student</option>
+                        <option value="faculty">Faculty</option>
+                    </select>
+                </div>
+
+                <!-- Student Specific Fields -->
+                <div id="studentFields">
+                    <div class="form-group">
+                        <label class="form-label">Course</label>
+                        <input type="text" name="course" class="form-control" placeholder="e.g., Computer Science">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Year of Study</label>
+                        <input type="number" name="year" class="form-control" placeholder="e.g., 3" min="1" max="5">
+                    </div>
+                </div>
+
+                <!-- Faculty Specific Fields -->
+                <div id="facultyFields" style="display: none;">
+                    <div class="form-group">
+                        <label class="form-label">Department</label>
+                        <input type="text" name="department" class="form-control" placeholder="e.g., Software Engineering">
+                    </div>
+                </div>
+
+                <div class="form-actions" style="margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+                    <p style="text-align: center; margin-top: 1rem; color: var(--text-muted);">
+                        Already have an account? <a href="{{ url_for('login') }}" style="color: var(--primary);">Login here</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

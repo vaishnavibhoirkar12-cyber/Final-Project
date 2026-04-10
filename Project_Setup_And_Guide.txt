@@ -1,0 +1,68 @@
+==================================================
+   FACULTY AUTO-EVALUATION PLATFORM - GUIDE
+==================================================
+
+Hello! If you are a beginner, this guide will explain exactly what this software does and how you can run it perfectly.
+
+-----------------------
+1. WHAT WE BUILT
+-----------------------
+We built a web platform where Faculty can post assignments and Students can upload their projects (PDFs). Normally, a teacher has to read every PDF to grade it. Instead, we built a custom "Keyword Auto-Grader"!
+
+When a student uploads their PDF, our system instantly reads all the text inside the PDF and mathematically checks it against a list of required keywords that the Faculty member provided. It then gives an instant percentage grade. For example, if a teacher requires 4 specific topics, and the student's essay only mentions 3 of them, the system instantly grades it a 75%.
+
+-----------------------
+2. HOW TO RUN THE APP
+-----------------------
+Step 1: Make sure you have Python installed on your computer.
+Step 2: Open your terminal (Command Prompt or VS Code Terminal).
+Step 3: Make sure you are inside the project folder.
+Step 4: Install the required packages by typing this exactly:
+        pip install flask flask-sqlalchemy flask-bcrypt pymupdf
+Step 5: Start the server by typing:
+        python app.py
+Step 6: Open your web browser (Chrome, Edge, etc.) and go to: http://127.0.0.1:5000/
+
+-----------------------
+3. HOW TO TEST THE SOFTWARE
+-----------------------
+Follow these steps to fully test the entire application from start to finish:
+
+THE REGISTRATION PORTAL
+- Start by opening http://127.0.0.1:5000/ and clicking "Register".
+- Fill out the form with a fake name, email (e.g. new_dude@test.com), and password.
+- Change the Role Dropdown to Student, fill in a Course, and click Register.
+- Try logging in with your new email and password to prove the account was securely created!
+- (Remember to log back out for the next test).
+THE FACULTY SIDE (Teacher)
+- Go to the website and log in using:
+  Email: faculty@test.com
+  Password: faculty123
+  Role: Faculty
+- Scroll down to "Create New Assignment".
+- Title: "Deep Learning Concepts"
+- Description: "Write an essay explaining deep learning."
+- Required Grading Keywords: "chain rule, backpropagation, gradient descent"
+- Click "Create Assignment".
+- Click "Logout" at the top right of the page.
+
+THE STUDENT SIDE
+- Log in using:
+  Email: student@test.com
+  Password: student123
+  Role: Student
+- Find any PDF file on your computer to upload. 
+  (Note: If the PDF does NOT contain those exact 3 keywords, they will lose points. If it contains 2 of them, they will naturally get a 66% score).
+- Upload the PDF to the assignment.
+- The student dashboard will instantly show they have been scanned.
+- Click "Logout".
+
+THE FINAL RESULT
+- Log back in as the Faculty.
+- Look at the new submission on your dashboard.
+- You will see a beautiful blue box saying "Keyword Match Result" showing you the exact percentage grade (e.g. 66%) and openly telling you exactly which of the 3 words the student completely missed!
+- From there, you as a teacher can assign a final official letter grade (A+, B, etc.) and submit your final review. 
+
+-----------------------
+IMPORTANT DATABASE NOTE:
+You also have an Admin account (admin@test.com / admin123) where you can delete users or set general deadlines!
